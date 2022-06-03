@@ -29,4 +29,6 @@ public class MemoryUserRepository implements UserRepository{
         return store.getLevel();
     }
 
+    @Override
+    public Long[] findExp(){return store.getExp();}
 }

@@ -34,11 +34,18 @@ public class UserController {
     @GetMapping(value = "/user/{username}")
     //@ResponseBody
     public String checkedProblem(@PathVariable("username")String username, Model model){
-        Long[] level = userService.findL();
+        Long[] level = userService.findL6();
         model.addAttribute("username",username);
         model.addAttribute("level",level);
         System.out.println("user"+username);
         return "boj-check";
+    }
+    @GetMapping(value = "/user/{username}/exp")
+    public String checkedExp(@PathVariable("username")String username, Model model){
+        Long[] exp = userService.findExp();
+        model.addAttribute("username",username);
+        model.addAttribute("exp",exp);
+        return "boj-exp";
     }
 
 

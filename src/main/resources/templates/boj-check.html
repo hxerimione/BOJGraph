@@ -14,10 +14,10 @@ var arr = [[${level}]]
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIA', 'RUBY'],
         datasets: [{
             label: '# of Votes',
-            data: arr.slice(1,6),
+            data: arr,
 
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

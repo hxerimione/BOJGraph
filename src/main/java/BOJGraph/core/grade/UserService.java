@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import BOJGraph.core.api.*;
 
+import java.util.Arrays;
+
 public class UserService {
 
 
@@ -20,7 +22,8 @@ public class UserService {
         User user = new User();
         user.setName(name);
         //name으로 api 통해 level 구하기
-        user.setLevel(getApi.getUserApi(name));
+        user.setLevel(getApi.getUserSolved(name));
+        user.setExp(getApi.getUserExp(name));
         userRepository.save(user);
 
         return user;
@@ -28,6 +31,18 @@ public class UserService {
     public Long[] findL(){
         Long[] level = userRepository.findLevel();
         return level;
+    }
+    public Long[] findL6(){
+        Long[] level = userRepository.findLevel();
+        Long[] result = {0L,0L,0L,0L,0L,0L};
+        for (int i = 1; i < 31; i++) {
+            result[(i-1)/5] += level[i];
+        }
+        return result;
+    }
+    public Long[] findExp(){
+        Long[] exp = userRepository.findExp();
+        return exp;
     }
 
 }
