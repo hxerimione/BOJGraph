@@ -1,18 +1,23 @@
 package BOJGraph.core.controller;
 
-import BOJGraph.core.grade.User;
+import BOJGraph.core.grade.UserDBRepository;
+import BOJGraph.core.grade.UserEntity;
 import BOJGraph.core.grade.UserForm;
 import BOJGraph.core.grade.UserService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
 
+    private static ObjectId userId;
     @Autowired
     public UserController(UserService userService){
         this.userService = userService;
@@ -20,31 +25,31 @@ public class UserController {
 
     @PostMapping("/user/new")
     public String create(UserForm form){
-        User user = new User();
-        String name = form.getName();
-        user.setName(name);
 
-        System.out.println("success");
-        System.out.println(">>"+form.getName());
         userService.saveUser(form.getName());
 
         return "redirect:/user/"+form.getName();
+
     }
 
     @GetMapping(value = "/user/{username}")
     //@ResponseBody
     public String checkedProblem(@PathVariable("username")String username, Model model){
-        Long[] level = userService.findL6();
+        UserEntity user = userService.findByName(username);
         model.addAttribute("username",username);
-        model.addAttribute("level",level);
-        System.out.println("user"+username);
+        Long[] level = user.getLevel();
+        Long[] result = {0L,0L,0L,0L,0L,0L};
+        for (int i = 1; i < 31; i++) {
+            result[(i-1)/5] += level[i];
+        }
+        model.addAttribute("level",result);
         return "boj-check";
     }
     @GetMapping(value = "/user/{username}/exp")
     public String checkedExp(@PathVariable("username")String username, Model model){
-        Long[] exp = userService.findExp();
+        UserEntity user = userService.findByName(username);
         model.addAttribute("username",username);
-        model.addAttribute("exp",exp);
+        model.addAttribute("exp",user.getExp());
         return "boj-exp";
     }
 

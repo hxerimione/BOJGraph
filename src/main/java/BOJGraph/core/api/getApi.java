@@ -12,8 +12,8 @@ public class getApi {
     static JSONParser parser = new JSONParser();
 
     static userApi userApi = new userApi();
-    public static Long[] getUserSolved(String userName) {
-        Long[] level = new Long[31];
+    public static Long[][] getUserSolved(String userName) {
+        Long[][] LNE = new Long[2][31];
         String URL = "https://solved.ac/api/v3/user/problem_stats?handle=" + userName;
         String parseJSON = userApi.getJson(URL);
         try {
@@ -21,7 +21,8 @@ public class getApi {
             JSONArray jsonArray = (JSONArray) object;
             for (int i = 0; i < jsonArray.size(); i++) {
                 JSONObject jsonObj = (JSONObject) jsonArray.get(i);
-                level[i] = (Long) jsonObj.get("solved");
+                LNE[0][i] = (Long) jsonObj.get("solved");
+                LNE[1][i] = (Long) jsonObj.get("exp");
                 System.out.print(jsonObj.get("solved") + " ");
             }
             //JSONObject jo = (JSONObject) object;
@@ -31,7 +32,7 @@ public class getApi {
         } catch (ParseException e) {
             System.out.println(e);
         }
-        return level;
+        return LNE;
     }
     public static Long[] getUserExp(String userName){
         Long[] exp = new Long[31];
@@ -45,10 +46,7 @@ public class getApi {
                 exp[i] = (Long)jsonObj.get("exp");
                 System.out.print(jsonObj.get("exp") + " ");
             }
-            //JSONObject jo = (JSONObject) object;
-            //System.out.println(jo.get("level"));
-            //System.out.println("내가 푼 문제 수 : " + jo.get("solvedCount"));
-            //System.out.println("나의 경험치 : " + jo.get("exp"));
+
         } catch (ParseException e) {
             System.out.println(e);
         }
