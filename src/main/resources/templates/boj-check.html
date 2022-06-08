@@ -3,11 +3,17 @@
 <head>
     <title>Hello</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 </head>
 <body>
-<p th:text="'안녕하세요. ' + ${username}" >안녕하세요. 손님</p>
-<canvas id="myChart" width="400" height="400"></canvas>
+<p>
+    <a href = "/">home</a>
+    <a th:href="@{'/user/'+${username}}">level</a>
+    <a th:href="@{'/user/'+${username}+'/exp'}">exp</a>
+
+</p>
+<canvas id="myChart" width="80vw" height="40vh"></canvas>
 <script th:inline="javascript">
 const ctx = document.getElementById('myChart');
 var arr = [[${level}]]

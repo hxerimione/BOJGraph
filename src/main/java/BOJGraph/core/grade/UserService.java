@@ -19,33 +19,29 @@ public class UserService {
 
     //저장
     public void saveUser(String username){
-        Long[] level = getApi.getUserSolved(username)[0];
-        Long[] exp = getApi.getUserSolved(username)[1];
-        UserEntity user = UserEntity
-                .builder()
-                .name(username)
-                .exp(exp)
-                .level(level)
-                .build();
-        //ObjectId id = user.getId();
-        userRepository.save(user);
-        System.out.println("save success");
-
+        //exist 여부 확인하고 없는 경우에만 저장
+        //update는 어떻게 해아할지 걱정..
+        if (!(userRepository.existsByName(username))) {
+            Long[] level = getApi.getUserSolved(username)[0];
+            Long[] exp = getApi.getUserSolved(username)[1];
+            UserEntity user = UserEntity
+                    .builder()
+                    .name(username)
+                    .exp(exp)
+                    .level(level)
+                    .build();
+            userRepository.save(user);
+            System.out.println("save success");
+        }
         return ;
     }
 
     public UserEntity findByName(String name){
         return userRepository.findByName(name);
     }
-//    public Long[] findLevelByName(String username){
-//        System.out.println("he123");
-//        return userRepository.findLevelByName(username);
-//    }
-//
-//    public Long[] findExpByName(String username){
-//
-//        return userRepository.findExpByName(username);
-//    }
+    public List<UserEntity> findAll(){
+        return userRepository.findAll();
+    }
 
 
 

@@ -21,6 +21,7 @@ import java.util.function.Function;
 public interface UserRepository extends MongoRepository<UserEntity, ObjectId> {
 
     public UserEntity findByName(String name);
+    public boolean existsByName(String name);
 //    Long[] findLevelByName(String name);
 //
 //    Long[] findExpByName(String name);

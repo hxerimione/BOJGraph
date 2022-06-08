@@ -25,11 +25,8 @@ public class UserController {
 
     @PostMapping("/user/new")
     public String create(UserForm form){
-
         userService.saveUser(form.getName());
-
         return "redirect:/user/"+form.getName();
-
     }
 
     @GetMapping(value = "/user/{username}")
@@ -53,5 +50,12 @@ public class UserController {
         return "boj-exp";
     }
 
+    @GetMapping(value = "/user")
+    public String userList(Model model){
+        List<UserEntity> users = userService.findAll();
+
+        model.addAttribute("users",users);
+        return "user-list";
+    }
 
 }

@@ -43,22 +43,7 @@ class MemoryUserRepositoryTest {
         assertThat(user.getName()).isEqualTo(findUser.getName());
         assertThat(user.getExp()).isEqualTo(findUser.getExp());
     }
-    @Test
-    public void saveTest(){
-        String username = "hxerimione";
-        Long[] level = getApi.getUserSolved(username)[0];
-        Long[] exp = getApi.getUserSolved(username)[1];
-        UserEntity user = UserEntity
-                .builder()
-                .name(username)
-                .exp(exp)
-                .level(level)
-                .build();
-        userRepository.save(user);
-        Long[] findLevel = userService.findLevelByName(username);
-        System.out.println("happy" + findLevel[2]);
-        assertThat(level[0]).isEqualTo(findLevel[0]);
-    }
+
 
 
 

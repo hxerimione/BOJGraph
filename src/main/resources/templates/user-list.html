@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<body>
+<div class="container">
+    <div>
+        <h1>Hello Spring</h1>
+        <p>
+            <a href = "/hello">hello</a>
+            <a href = "/user">목록</a>
+
+        </p>
+    </div>
+    <div>
+        <table>
+            <thead> <tr>
+                <th>#</th><th>이름</th> <th>레벨</th> <th>경험치</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}">hello</td>
+
+                <td>
+                    <a th:href="@{/user/{name} (name=${user.name})}" class="btn" role="button">레벨</a>
+                </td>
+                <td>
+                    <a th:href="@{/user/{user}/exp (name=${user.name})}" class="btn" role="button">경험치</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div> <!-- /container -->
+</body> </html>
