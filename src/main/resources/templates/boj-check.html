@@ -13,12 +13,16 @@
     <a th:href="@{'/user/'+${username}+'/exp'}">exp</a>
 
 </p>
-<canvas id="myChart" width="80vw" height="40vh"></canvas>
+
+<div class="chart-container" style="position: relative; height:50vh; width:40vw">
+
+<canvas id="myChart"></canvas>
+
 <script th:inline="javascript">
 const ctx = document.getElementById('myChart');
 var arr = [[${level}]]
 const myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'pie',
     data: {
         labels: ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIA', 'RUBY'],
         datasets: [{
@@ -53,5 +57,7 @@ const myChart = new Chart(ctx, {
     }
 });
 </script>
+</div>
+
 </body>
 </html>

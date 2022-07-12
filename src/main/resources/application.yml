@@ -4,3 +4,6 @@ spring:
       host: localhost
       port: 27017
       database: admin
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html

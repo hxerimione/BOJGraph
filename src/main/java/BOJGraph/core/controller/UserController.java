@@ -1,6 +1,5 @@
 package BOJGraph.core.controller;
 
-import BOJGraph.core.grade.UserDBRepository;
 import BOJGraph.core.grade.UserEntity;
 import BOJGraph.core.grade.UserForm;
 import BOJGraph.core.grade.UserService;
@@ -46,7 +45,12 @@ public class UserController {
     public String checkedExp(@PathVariable("username")String username, Model model){
         UserEntity user = userService.findByName(username);
         model.addAttribute("username",username);
-        model.addAttribute("exp",user.getExp());
+        Long[] exp = user.getExp();
+        Long[] result = {0L,0L,0L,0L,0L,0L};
+        for (int i = 1; i < 31; i++) {
+            result[(i-1)/5] += exp[i];
+        }
+        model.addAttribute("exp",result);
         return "boj-exp";
     }
 
@@ -57,5 +61,7 @@ public class UserController {
         model.addAttribute("users",users);
         return "user-list";
     }
+
+
 
 }

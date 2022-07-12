@@ -43,6 +43,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public void clearStore(){
+        userRepository.deleteAll();
+    }
 
 
 

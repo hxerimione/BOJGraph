@@ -24,7 +24,7 @@ public class UserListTest {
 
     @AfterEach
     public void afterEach(){
-        userRepository.deleteAll();
+        userService.clearStore();
     }
     @Test
     public void listTest(){
@@ -54,5 +54,13 @@ public class UserListTest {
         }
         Assertions.assertThat(o).contains(user1.getId());
         Assertions.assertThat(o).contains(user2.getId());
+
+
+
+    }
+    @Test
+    public void deleteTest(){
+        userService.clearStore();
     }
 }
+

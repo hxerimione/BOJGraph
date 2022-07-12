@@ -13,91 +13,26 @@
     <a th:href="@{'/user/'+${username}+'/exp'}">exp</a>
 
 </p>
-<canvas id="myChart" width="60vw" height="30vh"></canvas>
+
+<div class="chart-container" style="position: relative; height:50vh; width:40vw">
+
+<canvas id="myChart"></canvas>
 <script th:inline="javascript">
 const ctx = document.getElementById('myChart');
 var arr = [[${exp}]]
 const myChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'line',
     data: {
-        labels: ['B1','B2','B3','B4','B5', 'S1','S2','S3','S4','S5', 'G1','G2','G3','G4','G5','P1','P2','P3','P4','P5', 'D1','D2','D3','D4','D5', 'R1','R2','R3','R4','R5'],
+        labels: ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIA', 'RUBY'],
         datasets: [{
             label: '# of Votes',
             data: arr,
 
             backgroundColor: [
-                'rgba(189, 92, 36, 0.5)',
-                'rgba(171, 174, 18, 0.5)',
-                'rgba(153, 56, 0, 0.5)',
-                'rgba(135, 38, 0, 0.5)',
-                'rgba(117, 20, 0, 0.5)',
-
-                'rgba(170, 170, 170, 0.5)',
-                'rgba(152, 152, 152, 0.5)',
-                'rgba(134, 134, 134, 0.5)',
-                'rgba(116, 116, 116, 0.5)',
-                'rgba(98, 98, 98, 0.5)',
-
-                'rgba(242, 203, 97, 0.5)',
-                'rgba(224, 185, 79, 0.5)',
-                'rgba(206, 167, 61, 0.5)',
-                'rgba(188, 149, 43, 0.5)',
-                'rgba(170, 131, 25, 0.5)',
-
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(99, 2, 0, 0.2)'
+                'rgba(255, 99, 132, 0.2)'
             ],
             borderColor: [
-                'rgba(189, 92, 36, 1)',
-                'rgba(171, 174, 18, 1)',
-                'rgba(153, 56, 0, 1)',
-                'rgba(135, 38, 0, 1)',
-                'rgba(117, 20, 0, 1)',
-
-                'rgba(170, 170, 170, 1)',
-                'rgba(152, 152, 152, 1)',
-                'rgba(134, 134, 134, 1)',
-                'rgba(116, 116, 116, 1)',
-                'rgba(98, 98, 98, 1)',
-
-                'rgba(242, 203, 97, 1)',
-                'rgba(224, 185, 79, 1)',
-                'rgba(206, 167, 61, 1)',
-                'rgba(188, 149, 43, 1)',
-                'rgba(170, 131, 25, 1)',
-
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255, 99, 132, 1)',
-
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 99, 132, 1)'
             ],
             borderWidth: 1
         }]
@@ -111,5 +46,7 @@ const myChart = new Chart(ctx, {
     }
 });
 </script>
+</div>
+
 </body>
 </html>
